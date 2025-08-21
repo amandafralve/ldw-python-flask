@@ -6,6 +6,7 @@
     <title>Games</title>
 </head>
 <body>
+
     <h2>Página de Games</h2>
     <h3>Jogo em Destaque</h3>
     <ul>
@@ -22,5 +23,12 @@
             <li>{{player}}</li>
         {% endfor %}
     </ol>
+    <hr>
+    {% for key, value in console.items() %}
+    {{key}}: {{value}}<br>
+    {% endfor %}
+    <p>or</p>
+    <p>Console: {{console['name']}}, ({{console['year']}})</p>
+    
 </body>
 </html>
