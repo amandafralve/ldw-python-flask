@@ -1,0 +1,31 @@
+
+    <h2>Página de Games</h2>
+    <h3>Jogo em Destaque</h3>
+    <ul>
+        <li> Título: <strong>{{title}}</strong> </li>
+        <li> Ano: <strong>{{year}}</strong></li>
+        <li> Categoria: <strong>{{category}}</strong></li>
+    </ul>
+    <p>O jogo {{title}} tem {{2025-year}} ano(s).</p>
+    {# Este é um comentário em Jinja #}
+
+    <h3>Está sendo Jogado por:</h3>
+    <ol>
+        {% for player in players %}
+            <li>{{player}}</li>
+        {% endfor %}
+    </ol>
+    <hr>
+    <form action="{{url_for('games')}}" method="POST">
+        <label for="player">Jogador:</label>
+        <input type="text", name="player">
+        <input type="submit", value="Entrar">
+    </form>
+    <hr>
+    <h3>Console mais bem avaliado</h3>
+    {% for key, value in console.items() %}
+    {{key}}: {{value}}<br>
+    {% endfor %}
+    <p>or</p>
+    <p>Console: {{console['name']}}, ({{console['year']}})</p>
+    
