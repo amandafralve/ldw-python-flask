@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 
     <h2>Página de Games</h2>
     <h3>Jogo em Destaque</h3>
@@ -18,8 +21,8 @@
     <hr>
     <form action="{{url_for('games')}}" method="POST">
         <label for="player">Jogador:</label>
-        <input type="text", name="player">
-        <input type="submit", value="Entrar">
+        <input type="text", name="player" class="form-control w-50">
+        <input type="submit", value="Entrar" class="btn btn-sucess">
     </form>
     <hr>
     <h3>Console mais bem avaliado</h3>
@@ -29,3 +32,4 @@
     <p>or</p>
     <p>Console: {{console['name']}}, ({{console['year']}})</p>
     
+{% endblock content %}
