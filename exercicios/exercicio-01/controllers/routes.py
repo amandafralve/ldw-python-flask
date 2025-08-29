@@ -5,4 +5,7 @@ def init_app(app):
     
     @app.route('/')
     def home():
-        return render_template('')
+        return render_template('index.html')
+    
+    
+    
