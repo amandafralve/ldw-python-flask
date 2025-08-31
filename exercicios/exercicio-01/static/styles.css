@@ -1,0 +1,25 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav{
+    background-color: lightgreen;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.nav-itens{
+    text-decoration: none;
+    display: flex;
+    margin: auto;
+}

@@ -7,5 +7,11 @@ def init_app(app):
     def home():
         return render_template('index.html')
     
+    @app.route('/plants')
+    def plants():
+        return render_template('plants.html')
     
+    @app.route('/new-plant')
+    def newPlant():
+        return render_template('newPlant.html')
     
