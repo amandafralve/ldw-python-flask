@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Plantas Cadastradas</h2>
+    <h2>Plantas no Jardim</h2>
+    <h3>Todas as plantas</h3>
+    <ul>
+        <li>Nome Científico: {{nomeCientifico}}</li>
+        <li>Nome Popular: {{nomePop}}</li>
+        <li>Luminosidade: {{luz}}</li>
+        <li>Rega: {{rega}} </li>
+        <li>Adubação: {{adubacao}}</li>
+    </ul>
+
+    <ol>
+        {% for especie in especies %}
+        <li>{{especie}}</li>
+        {% endfor %}
+    </ol>
+
+    <form action="{{url_for('plants')}}", method="POST">
+        <label for="especie">Nova espécie</label>
+        <input type="text" name="especie" id="">
+        <input type="submit" value="Inserir espécie no Jardim">
+    </form>
+    <br><hr>
+    <h3>Receitas de adubos caseiros</h3>
+    {% for key, value in receitasAdubo.items() %}
+    {{key}}: {{value}}<br>
+    {% endfor %}
+
 {% endblock content %}
