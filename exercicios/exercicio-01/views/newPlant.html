@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Cadastrar Plantas</h2>
+    <h2 class="text-center mt-3">Cadastrar Plantas</h2>
 
-    <form action="{{url_for('newPlant')}}" method="POST">
+    <form class="d-flex flex-column align-items-center" action="{{url_for('newPlant')}}" method="POST">
         <label>Nome Científico:</label>
         <input type="text" name="nomeCientifico">     
         <label>Nome Popular:</label>
@@ -14,13 +14,13 @@
         <input type="text" name="rega">     
         <label>Adubação:</label>
         <input type="text" name="adubacao">
-        <input type="submit" name="Inserir planta">
+        <input class="btn btn-success mt-3" type="submit" value="Inserir planta">
     </form>
 
     <br><hr>
-    <h2>Plantas Cadastradas</h2>
-    <table>
-        <tr>
+    <h2 class="text-center mt-3">Plantas Cadastradas</h2>
+    <table class="table table-striped">
+        <tr >
             <th>Nome Científico</th>
             <th>Nome Popular</th>
             <th>Luminosidade</th>

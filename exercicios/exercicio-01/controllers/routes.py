@@ -10,11 +10,11 @@ def init_app(app):
     especies = ['Calathea', 'Pothus']
     plantsList = [
         {
-            'Nome Cientifico': 'Monstera Deliciosa',
-            'Nome Popular': 'Costela de Adão',
-            'Luminosidade': 'Meia-Sombra',
-            'Rega': '2 vezes por semana',
-            'Adubação': 'Intervalo de 90 dias'
+            'nomeCientifico': 'Monstera deliciosa',
+            'nomePop': 'Costela de Adão',
+            'luz': 'Meia-sombra',
+            'rega': '2 vezes por semana',
+            'adubacao': 'Intervalo de 90 dias'
         }
     ]
     
@@ -34,7 +34,7 @@ def init_app(app):
                 return redirect(url_for('plants'))
             
         #Dicionário
-        receitasAdubo = {'receita': 1, 'descricao': '300ml de água, ½ colher de cúrcuma, ½ colher de canela em pó'}
+        receitasAdubo = {'Receita': 1, 'Descrição': '300ml de água, ½ colher de cúrcuma, ½ colher de canela em pó'}
         
         return render_template('plants.html', receitasAdubo=receitasAdubo, plantsList=plantsList, nomeCientifico=nomeCientifico, nomePop=nomePop, luz=luz, rega=rega, adubacao=adubacao, especies=especies)
     
@@ -44,8 +44,13 @@ def init_app(app):
         
         if request.method == 'POST':
             if request.form.get('nomeCientifico') and request.form.get('nomePop') and request.form.get('luz') and request.form.get('rega') and request.form.get('adubacao'):
-                plantsList.append({'Nome Científico:': request.form.get('nomeCientifico:'), 'Nome Popular:': request.form.get('nomePop'), 'Luminosidade:': request.form.get('luz'),
-                                'Rega:': request.form.get('rega'), 'Adubação:':request.form.get('adubacao')})
+                plantsList.append({
+                        'nomeCientifico': request.form.get('nomeCientifico'),
+                        'nomePop': request.form.get('nomePop'),
+                        'luz': request.form.get('luz'),
+                        'rega': request.form.get('rega'),
+                        'adubacao': request.form.get('adubacao')
+                    })
             return redirect(url_for('newPlant'))
         return render_template('newPlant.html', plantsList=plantsList)
     
