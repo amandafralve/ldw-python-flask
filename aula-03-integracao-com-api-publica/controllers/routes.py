@@ -49,13 +49,14 @@ def init_app(app):
     
     @app.route('/apigames', methods=['GET', 'POST'])
     #Criando parâmetros para a rota
-    @app.route('/apigames/<id>', methods=['GET', 'POST'])
+    @app.route('/apigames/<int:id>', methods=['GET', 'POST'])
     
     def apigames(id=None): # none torna parâmetro opcional
         url = 'https://www.freetogame.com/api/games'
         response = urllib.request.urlopen(url)
         data = response.read()
         gameslist = json.loads(data)
+        
         
         # Verificando se o parâmetro foi ligado
         if id:
@@ -69,4 +70,4 @@ def init_app(app):
             else:
                 return f'Game com a ID {id} não foi encontrado.'
         else:
-            render_template('apigames.html', gameslist=gameslist)
+            return render_template('apigames.html', gameslist=gameslist)
