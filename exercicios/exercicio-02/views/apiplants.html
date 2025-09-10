@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4" style="background-color: #f0f0f0; border-radius: 8px;">
+    <div class="row">
+        {% for p in plantsjson %}
+            <div class="col-md-3 mb-4 d-flex align-items-stretch">
+                <div class="card" style="width: 100%;">
+                    {% if p.default_image and p.default_image.thumbnail %}
+                        <img src="{{ p.default_image.thumbnail }}" class="card-img-top" alt="{{ p.common_name }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="Sem imagem">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.common_name or 'Nome comum não disponível' }}</h5>
+                        <p class="card-text">
+                            <strong>Nome científico:</strong>
+                            {{ p.scientific_name[0] if p.scientific_name else 'Desconhecido' }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Família:</strong> {{ p.family or 'Desconhecida' }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Rega:</strong> {{ p.watering or 'Não informado' }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Luz solar:</strong> {{ p.sunlight | join(', ') if p.sunlight else 'Não informado' }}
+                        </p>
+                        <a href="#" class="btn btn-outline-success w-100">+ Info</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

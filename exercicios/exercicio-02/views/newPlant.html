@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center mt-3">Cadastrar Plantas</h2>
+
+    <form class="d-flex flex-column align-items-center" action="{{url_for('newPlant')}}" method="POST">
+        <label>Nome Científico:</label>
+        <input type="text" name="nomeCientifico">     
+        <label>Nome Popular:</label>
+        <input type="text" name="nomePop">     
+        <label>Luminosidade:</label>
+        <input type="text" name="luz">     
+        <label>Rega:</label>
+        <input type="text" name="rega">     
+        <label>Adubação:</label>
+        <input type="text" name="adubacao">
+        <input class="btn btn-success mt-3" type="submit" value="Inserir planta">
+    </form>
+
+    <br><hr>
+    <h2 class="text-center mt-3">Plantas Cadastradas</h2>
+    <table class="table table-striped">
+        <tr >
+            <th>Nome Científico</th>
+            <th>Nome Popular</th>
+            <th>Luminosidade</th>
+            <th>Rega</th>
+            <th>Adubação</th>
+        </tr>
+        {% for plant in plantsList %}
+        <tr>
+            <td>{{plant.nomeCientifico}}</td>
+            <td>{{plant.nomePop}}</td>
+            <td>{{plant.luz}}</td>
+            <td>{{plant.rega}}</td>
+            <td>{{plant.adubacao}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

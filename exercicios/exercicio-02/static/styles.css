@@ -1,0 +1,53 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav{
+    background-color: rgb(94, 192, 94);
+    color: white;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+a {
+    color: white;          
+    text-decoration: none;  
+}
+
+a:hover {
+    color: rgb(255, 255, 255);       
+}
+
+.nav-itens{
+    text-decoration: none;
+    display: flex;
+    margin: auto;
+}
+
+#conteudo{
+    background-color: white;
+    border: 1px solid rgb(94, 192, 94);
+    margin-inline: 100px;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 900px;
+}
+
+#receitas-adubo {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
