@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-import urllib, json
+import urllib, json, db, os
 
 def init_app(app):
     # Definindo a rota principal da aplicação '/'
@@ -46,6 +46,40 @@ def init_app(app):
                 return redirect(url_for('newgame'))
         return render_template('newGame.html', gamelist=gamelist)
     
+    # CRUD - Listagem e Cadastro
+    @app.route('/estoque', methods=['GET', 'POST'])
+    @app.route('/estoque/delete/<int:id>')
+    def estoque(id=None):
+        # Se o ID for enviado
+        if id:
+            # Selecionando o jogo pelo ID
+            game = Game.query.get(id)
+            # Deleta o jogo pelo ID
+            db.session.delete(game)
+            db.session.commit()
+            return redirect(url_for('estoque'))
+
+        if request.method == 'POST':
+            # Realiza o cadastro do jogo
+            newGame = Game(request.form['title'], request.form['year'], request.form['category'],
+                           request.form['platform'], request.form['price'], request.form['quantity'])
+            # .session.add é o método do SQLAlchemy para gravar registros no banco
+            db.session.add(newGame)
+            # .session.commit confirma as alterações no banco
+            db.session.commit()
+            return redirect(url_for('estoque'))
+        else:
+            # Paginação de registros
+            # Captura p valore de 'page' que foi passado pelo metodo GER
+            page = request.args.get('page',1,type=int)
+            # Valor definido para registros em cada página
+            per_page = 3
+            # query.all método que seleciona todos o registros
+            # query.paginate método para filtrar os registros de acoro com um limite
+            # query.all é método do SQL Alchemy para selecionar todos os registros
+        gamesEstoque = Game.query.all()
+        return render_template('estoque.html', gamesEstoque=gamesEstoque)
+        
     
     @app.route('/apigames', methods=['GET', 'POST'])
     #Criando parâmetros para a rota
