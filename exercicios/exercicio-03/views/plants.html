@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="d-flex justify-content-center align-items-center mt-3">Plantas no Jardim</h2>
+    <h3 class="d-flex justify-content-center align-items-center mt-3">Todas as plantas</h3>
+
+    <div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="card text-black bg-light mb-3 mx-4" style="max-width: 25rem;">
+        <div class="card-header">Detalhes da Planta</div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                <li><strong>Nome Científico:</strong> {{nomeCientifico}}</li>
+                <li><strong>Nome Popular:</strong> {{nomePop}}</li>
+                <li><strong>Luminosidade:</strong> {{luz}}</li>
+                <li><strong>Rega:</strong> {{rega}}</li>
+                <li><strong>Adubação:</strong> {{adubacao}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card text-black bg-light mb-3" style="max-width: 25rem;">
+        <div class="card-header">Detalhes da Planta</div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                <li><strong>Nome Científico:</strong> Lavandula angustifolia</li>
+                <li><strong>Nome Popular:</strong> Lavanda</li>
+                <li><strong>Luminosidade:</strong> Sol pleno</li>
+                <li><strong>Rega:</strong> Moderada, evite encharcar</li>
+                <li><strong>Adubação:</strong> A cada 2 meses</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="d-flex justify-content-center align-items-center mt-3">Espécies no Jardim</h3>
+    <ol class="d-flex justify-content-center align-items-center mt-3 flex-column">
+        {% for especie in especies %}
+        <li>{{especie}}</li>
+        {% endfor %}
+    </ol>
+
+    <form class="d-flex justify-content-center align-items-center mt-3 flex-column " action="{{url_for('plants')}}", method="POST">
+        <label class="form-label" for="especie">Nova espécie</label>
+        <input class="form-control w-25" type="text" name="especie" id="">
+        <input class="btn btn-success mt-3" type="submit" value="Inserir espécie no Jardim">
+    </form>
+    <br><hr>
+
+    <div class="container mt-4">
+    <h3 class="text-center mb-4">Receitas de adubos caseiros</h3>
+
+    <div class="row" id="receitas-adubo">
+        {% for key, value in receitasAdubo.items() %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ key }}</h5>
+                <p class="card-text">{{ value }}</p>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>  
+    </div>
+
+
+{% endblock content %}

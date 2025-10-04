@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="d-flex justify-content-center align-items-center mt-3">Bem Vindo ao seu Garden!</h2>
+    <p class="d-flex justify-content-center align-items-center mt-3">Aqui você pode gerenciar suas plantas de forma fácil e prática.</p>
+    <p class="d-flex justify-content-center align-items-center mt-3">Explore as opções abaixo:</p>
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <a href="{{url_for('plants')}}" class="btn btn-success mx-2">Ver Plantas</a>
+        <a href="{{url_for('newPlant')}}" class="btn btn-success mx-2">Cadastrar Plantas</a>
+    </div>
+
+{% endblock content %}
