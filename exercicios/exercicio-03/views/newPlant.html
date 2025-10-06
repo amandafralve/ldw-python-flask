@@ -26,6 +26,8 @@
             <th>Luminosidade</th>
             <th>Rega</th>
             <th>Adubação</th>
+            <th></th>
+            <th></th>
         </tr>
         {% for plant in plantsList %}
         <tr>
@@ -34,7 +36,25 @@
             <td>{{plant.luz}}</td>
             <td>{{plant.rega}}</td>
             <td>{{plant.adubacao}}</td>
+            <td><a href="{{url_for('editPlant', id=plant.id)}}" class="btn btn-warning">Editar</a></td>
+            <td><a href="{{url_for('newPlant', id=plant.id)}}" class="btn btn-danger" onclick="return confirm('Deseja excluir {{plant.nomePop}} da lista?')">Excluir</a></td>
+        </tr>
+        {% else %}
+        <tr>
+        <td colspan="4" class="text-center text-muted">
+            Nenhuma planta cadastrada!
+        </td>
         </tr>
         {% endfor %}
+        <p style="text-align: center;">
+            <!-- Se houver registros anteriores -->
+            {% if plant.has_prev %}
+                <a href="{{url_for('newPlant', page=plant.prev_num)}}"><< Anterior</a>
+            {% endif %}
+            <!-- Se houver próximos registros -->
+            {% if plant.has_next %}
+                <a href="{{url_for('newPlant', page=plant.next_num)}}">Próximo >></a>
+        </p>
+            {% endif %}
     </table>
 {% endblock content %}

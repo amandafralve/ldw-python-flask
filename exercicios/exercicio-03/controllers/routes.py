@@ -2,13 +2,14 @@ from flask import render_template, request, url_for, redirect
 import urllib, json
 import requests, os
 from dotenv import load_dotenv
+from models.database import db, Plant, Receipt
 
 # Carregando arquivo .env 
 load_dotenv()
 # Acessando a variável
 api_key = os.getenv("API_KEY")
 
-def init_app(app):
+def init_app(app):  
     
     
     @app.route('/')
@@ -27,7 +28,7 @@ def init_app(app):
     ]
     
     
-    @app.route('/plants', methods=['GET','POST'])
+    @app.route('/plants',    methods=['GET','POST'])
     def plants():
         nomeCientifico = 'Monstera Deliciosa'
         nomePop = 'Costela de Adão'
@@ -48,6 +49,7 @@ def init_app(app):
     
     
     @app.route('/new-plant', methods=['GET','POST'])
+    @app.route('/new-plant/delete/<int:id>')
     def newPlant():
         
         if request.method == 'POST':
@@ -61,6 +63,17 @@ def init_app(app):
                     })
             return redirect(url_for('newPlant'))
         return render_template('newPlant.html', plantsList=plantsList)
+    
+    @app.route('/new-plant/edit/<int:id>')
+    def editPlant(id):
+        plant = Plant.query.get(id)
+        if request.method == 'POST':
+            plant.nomeCientifico = request.form['nomeCientifico']
+            plant.nomePop = request.form['nomePop']
+            plant.luz = request.form['luz']
+            plant.rega = request.form['rega']
+            plant.adubacao = request.form['adubacao']
+        
     
     @app.route('/apiplants', methods=['GET', 'POST'])
     def apiPlants():
